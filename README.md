@@ -46,12 +46,6 @@ Install all dependencies (run in the root directory):
 make install
 ```
 
-To start **all** services at once:
-
-```bash
-make run
-```
-
 ---
 
 ## Service: Geographic Processing API (Python/FastAPI)
