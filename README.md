@@ -7,9 +7,7 @@ This repository contains a modular platform for geographic data analysis and vis
 
 ## Demo
 
-<video src="./geo-processor-demo.mp4" controls width="600" style="max-width: 100%">
-  Your browser does not support the video tag.
-</video>
+[![Watch the video](./geo-processor-ss.png)](https://www.youtube.com/watch?v=Nt-DtziF5I8)
 
 ---
 
