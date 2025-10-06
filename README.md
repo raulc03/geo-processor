@@ -5,6 +5,14 @@ This repository contains a modular platform for geographic data analysis and vis
 - An API gateway and cache service (NestJS/Node.js).
 - A Next.js frontend client for user interaction and visualization.
 
+## Demo
+
+<video src="./geo-processor-demo.mp4" controls width="600" style="max-width: 100%">
+  Your browser does not support the video tag.
+</video>
+
+---
+
 ## Table of Contents
 
 - [Installation (Global)](#installation-global)
@@ -31,7 +39,7 @@ This repository contains a modular platform for geographic data analysis and vis
   - [Running](#running-2)
 - [Technical Decisions and Rationale](#technical-decisions-and-rationale)
 
-## Installation (Global)
+## Installation
 
 **Prerequisites:**
 - Python 3.8+
