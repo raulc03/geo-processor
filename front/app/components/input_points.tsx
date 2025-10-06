@@ -21,7 +21,6 @@ export default function InputPoints({
     setError,
     setResult,
 }: InputPointsProps) {
-    // Maintain editable string values locally for inputs
     const [inputState, setInputState] = useState(() =>
         points.map(pt => ({ lat: pt.lat.toString(), lng: pt.lng.toString() }))
     );
@@ -33,19 +32,16 @@ export default function InputPoints({
         })));
     }, [points]);
 
-    // On input change, update the inputState string AND points state (for immediate pointer update)
     const handleInputChange = (
         idx: number,
         field: 'lat' | 'lng',
         value: string
     ) => {
-        // Update visual input state (for typing)
         const newInputs = inputState.map((pt, i) =>
             i === idx ? { ...pt, [field]: value } : pt
         );
         setInputState(newInputs);
 
-        // Try to parse, clamp, round, and update points immediately if valid
         let num = parseFloat(value);
         if (!Number.isNaN(num)) {
             if (field === 'lat') num = Math.max(-90, Math.min(90, num));
@@ -58,7 +54,6 @@ export default function InputPoints({
         }
     };
 
-    // On blur or Enter, validate, clamp, round to step (0.0001), and push update to parent
     const commitValue = (
         idx: number,
         field: 'lat' | 'lng'
@@ -68,7 +63,6 @@ export default function InputPoints({
         if (Number.isNaN(num)) num = 0;
         if (field === 'lat') num = Math.max(-90, Math.min(90, num));
         else num = Math.max(-180, Math.min(180, num));
-        // Round to 4 decimals (~0.0001 step)
         num = Math.round(num * 10000) / 10000;
 
         const newPoints = points.map((pt, i) =>
@@ -76,19 +70,16 @@ export default function InputPoints({
         );
         setPoints(newPoints);
 
-        // Replace with new value string (to remove any incomplete/invalid)
         setInputState(inputState.map((pt, i) =>
             i === idx ? { ...pt, [field]: num.toString() } : pt
         ));
     };
-    // Update addPoint to add a value at 4 decimals
     const addPoint = () => {
         const roundedLat = Math.round(0 * 10000) / 10000;
         const roundedLng = Math.round(0 * 10000) / 10000;
         setPoints([...points, { lat: roundedLat, lng: roundedLng }]);
         setInputState([...inputState, { lat: roundedLat.toString(), lng: roundedLng.toString() }]);
     };
-    // Update removePoint accordingly
     const removePoint = (index: number) => {
         if (points.length > 1) {
             setPoints(points.filter((_, i) => i !== index));

@@ -9,7 +9,6 @@ type MapProps = {
     result: Result;
 };
 
-// Dynamically import react-leaflet components
 const MapContainer = dynamic(
     () => import('react-leaflet').then((mod) => mod.MapContainer),
     { ssr: false, loading: () => <div style={{ height: 256, background: '#f3f4f6' }} /> }
@@ -36,7 +35,6 @@ function createLeafletIcons() {
     try {
         if (typeof window !== 'undefined') {
             L = require('leaflet');
-            // Patch icon URLs (static)
             delete (L.Icon.Default.prototype as any)._getIconUrl;
             L.Icon.Default.mergeOptions({
                 iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
@@ -70,14 +68,12 @@ function createLeafletIcons() {
 
 // Overlay Markers for points & centroid
 function MarkersOverlay({ points, centroid, pointIcon, centroidIcon }: { points: Point[], centroid: Point, pointIcon: any, centroidIcon: any }) {
-    // Render user points
     return <>
         {points.map((point, idx) => (
             <Marker key={idx} position={[point.lat, point.lng]} icon={pointIcon}>
                 <Popup>Point {idx + 1}</Popup>
             </Marker>
         ))}
-        {/* Centroid marker */}
         <Marker position={[centroid.lat, centroid.lng]} icon={centroidIcon}>
             <Popup>Centroid</Popup>
         </Marker>
@@ -114,7 +110,6 @@ function FocusUpdater({ bounds, centroid }: { bounds: Bounds, centroid: Point })
 }
 
 // Memoized MapContainer - initial render only
-
 let mapIcons = null as { centroidIcon: any, pointIcon: any } | null;
 
 export default function Map({ result, points }: MapProps) {

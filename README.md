@@ -252,6 +252,8 @@ In a separate terminal, from the `front` directory:
 make run
 ```
 
+And then you can go to the app by clicking [here](http://localhost:3000).
+
 ---
 
 ## Technical Decisions and Rationale
