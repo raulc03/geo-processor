@@ -257,24 +257,24 @@ make run
 ## Technical Decisions and Rationale
 
 1. **Custom Request Validation Handling in FastAPI**
-One of the most interesting challenges was overriding FastAPI’s default request validation error handling. Since I needed to return a 400 status code instead of the default 422, I implemented a custom exception handler. This decision helped me deepen my understanding of how FastAPI internally manages pydantic validation and error propagation.
+   - One of the most interesting challenges was overriding FastAPI’s default request validation error handling. Since I needed to return a 400 status code instead of the default 422, I implemented a custom exception handler. This decision helped me deepen my understanding of how FastAPI internally manages pydantic validation and error propagation.
 
-2. **Caching Implementation in NestJS**
-Caching was implemented using a simple hashmap, where each key corresponds to the stringified JSON request. This means the cache is cleared if the service crashes or restarts. The decision was made for simplicity, avoiding additional dependencies or unnecessary complexity at this stage of the project.
+3. **Caching Implementation in NestJS**
+   - Caching was implemented using a simple hashmap, where each key corresponds to the stringified JSON request. This means the cache is cleared if the service crashes or restarts. The decision was made for simplicity, avoiding additional dependencies or unnecessary complexity at this stage of the project.
 
-3. **Validations Across Layers**
-Although both APIs contain their own input validations (tested through unit tests), there is very little chance of invalid requests reaching the backend. The frontend layer already enforces strict constraints on user input, especially regarding coordinate values.
+5. **Validations Across Layers**
+   - Although both APIs contain their own input validations (tested through unit tests), there is very little chance of invalid requests reaching the backend. The frontend layer already enforces strict constraints on user input, especially regarding coordinate values.
 
-4. **Coordinate Input Restrictions**
-The interface enforces input limits for latitude and longitude values of each point, since I learned that valid coordinates only fall within specific numerical ranges: latitude between -90 and 90, and longitude between -180 and 180. Implementing this restriction prevents invalid geographic data from being submitted to the APIs.
+7. **Coordinate Input Restrictions**
+   - The interface enforces input limits for latitude and longitude values of each point, since I learned that valid coordinates only fall within specific numerical ranges: latitude between -90 and 90, and longitude between -180 and 180. Implementing this restriction prevents invalid geographic data from being submitted to the APIs.
 
-5. **NestJS API Development**
-The NestJS API is a straightforward replication of the logic implemented in the FastAPI service — including models, validations, and tests. As I had no prior experience with this framework, I briefly consulted the official documentation and leveraged an AI assistant to configure and explore its tools. Between us, FastAPI is better.
+9. **NestJS API Development**
+    - The NestJS API is a straightforward replication of the logic implemented in the FastAPI service — including models, validations, and tests. As I had no prior experience with this framework, I briefly consulted the official documentation and leveraged an AI assistant to configure and explore its tools. Between us, FastAPI is better.
 
-6. **Project Structure (src and test)**
-Based on my experience, the src and test folder layout provides a cleaner and more maintainable structure. Therefore, both APIs follow this layout to ensure consistency and clarity across services.
+11. **Project Structure (src and test)**
+    - Based on my experience, the src and test folder layout provides a cleaner and more maintainable structure. Therefore, both APIs follow this layout to ensure consistency and clarity across services.
 
-7. **UI Design (Next.js)**
-The UI design was generated with the help of an AI assistant, mainly because I have limited experience with visual design and CSS/Tailwind. However, my background in TypeScript and React allowed me to enhance the project’s architecture and improve the user experience, focusing on clarity and maintainability.
+13. **UI Design (Next.js)**
+    - The UI design was generated with the help of an AI assistant, mainly because I have limited experience with visual design and CSS/Tailwind. However, my background in TypeScript and React allowed me to enhance the project’s architecture and improve the user experience, focusing on clarity and maintainability.
 
 ---
