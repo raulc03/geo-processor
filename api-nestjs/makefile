@@ -3,6 +3,7 @@
 install:
 	@echo "📦 Instalando dependencias..."
 	npm install
+	nest build
 
 run:
 	@echo "🚀 Iniciando en modo producción..."
