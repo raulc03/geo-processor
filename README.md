@@ -40,11 +40,17 @@ This repository contains a modular platform for geographic data analysis and vis
 ## Installation
 
 **Prerequisites:**
+- Git
 - Python 3.8+
 - Node.js 18+
 - npm
 - [uv](https://github.com/astral-sh/uv): Install with `pip install uv`
 - GNU Make
+
+Clone this repository:
+```bash
+git clone https://github.com/raulc03/geo-processor.git && cd geo-processor
+```
 
 Install all dependencies (run in the root directory):
 
